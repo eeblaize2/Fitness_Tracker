@@ -13,7 +13,8 @@ const exerciseSchema= mongoose.Schema({
 
 const workoutSchema= mongoose.Schema({
    exercises:[exerciseSchema],
-    date:{type:Date}
+    day:{type:Date},
+    totalDuration:{type:Number}
 })
 
 const Workout= mongoose.model('Workout', workoutSchema)
