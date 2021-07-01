@@ -4,7 +4,7 @@ const port = 3000
 const connect_db= require('./connect.js')
 const dotenv= require('dotenv')
 const path= require('path')
-const {addWorkout, getWorkouts, addExercise}= require('./controllers.js')
+const {addWorkout, getWorkouts, addExercise, getRange}= require('./controllers.js')
 
 
 dotenv.config()
@@ -27,6 +27,7 @@ app.get('/exercise', (req, res) => {
 app.post('/api/workouts', addWorkout)
 app.get('/api/workouts', getWorkouts)
 app.put('/api/workouts/:id', addExercise)
+app.get('/api/workouts/range', getRange)
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

@@ -1,4 +1,5 @@
 const Workout= require('./model.js')
+const dayjs= require('dayjs')
 
 const addWorkout= async(req,res)=>{
     const newWorkout= await new Workout({
@@ -19,7 +20,6 @@ const getWorkouts= async(req,res)=>{
 
 const addExercise= async(req,res)=>{
     const newExercise= req.body
-    console.log(newExercise, req.params.id)
     const workout= await Workout.findById(req.params.id)
     if(!workout){
         res.status(404).send('workout not found')
@@ -30,6 +30,19 @@ const addExercise= async(req,res)=>{
 
 }
 
+const getRange= async(req,res)=>{
+    const sevenDays= dayjs().subtract(7,'day').format('MM/DD/YYYY')
+    const workouts= await Workout.find({})
+    const inRange= workouts.map(workout=>{
+        const formattedDate= workout.day.toLocaleDateString()
+        if(dayjs(formattedDate).isAfter(sevenDays)){
+            return workout
+        }
+    })
+   res.status(200).json(inRange)
+}
+
+
 module.exports={
-    addWorkout, getWorkouts, addExercise
+    addWorkout, getWorkouts, addExercise, getRange
 }
