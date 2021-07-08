@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT||3000
 const connect_db= require('./connect.js')
 const dotenv= require('dotenv')
 const path= require('path')
