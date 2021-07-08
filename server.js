@@ -9,19 +9,19 @@ const {addWorkout, getWorkouts, addExercise, getRange}= require('./controllers.j
 
 dotenv.config()
 connect_db()
-// app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.static(path.join(__dirname, './public')))
 app.use(express.json())
 
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public'))
+  res.sendFile(path.join(__dirname, './public'))
 })
 
 app.get('/exercise', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/exercise.html'))
+    res.sendFile(path.join(__dirname, './public/exercise.html'))
   })
  app.get('/stats', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/stats.html'))
+    res.sendFile(path.join(__dirname, './public/stats.html'))
   }) 
 
 app.post('/api/workouts', addWorkout)
